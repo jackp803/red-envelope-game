@@ -28,6 +28,22 @@ const state = {
   cards: []
 };
 
+function launchHeartBurst() {
+  const icons = ["❤", "💛", "✨"];
+  for (let i = 0; i < 22; i += 1) {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent = pick(icons);
+    heart.style.left = `${8 + Math.random() * 84}%`;
+    heart.style.animationDelay = `${Math.random() * 0.25}s`;
+    heart.style.fontSize = `${0.9 + Math.random() * 1.1}rem`;
+    document.body.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 1400);
+  }
+}
+
 function pow10(n) {
   return 10 ** n;
 }
@@ -220,6 +236,8 @@ function finalize() {
   totalEl.textContent = String(total);
   resultAmount.textContent = `最終金額：${total} 元`;
   resultPanel.classList.remove("hidden");
+  resultPanel.classList.add("show");
+  launchHeartBurst();
   noteEl.textContent = "所有位數已翻牌完成，請領取紅包。";
 }
 
@@ -294,6 +312,7 @@ function buildCard(position) {
 
 function resetView() {
   resultPanel.classList.add("hidden");
+  resultPanel.classList.remove("show");
   claimBox.classList.add("hidden");
   totalEl.textContent = "____";
 }
@@ -314,6 +333,7 @@ function initGame() {
 
   for (let p = state.digitCount - 1; p >= 0; p -= 1) {
     const built = buildCard(p);
+    built.element.style.animationDelay = `${(state.digitCount - 1 - p) * 70}ms`;
     state.cards.push(built.card);
     digitContainer.appendChild(built.element);
   }
