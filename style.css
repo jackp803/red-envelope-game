@@ -1,7 +1,7 @@
 ﻿:root {
-  --bg-deep: #3a0606;
-  --bg-mid: #770f18;
-  --bg-light: #c22d2d;
+  --bg-deep: #8b1f3a;
+  --bg-mid: #c73f63;
+  --bg-light: #f08aa7;
   --gold-1: #ffd97d;
   --gold-2: #f6bf55;
   --gold-3: #a77421;
@@ -23,13 +23,41 @@ body {
   font-family: "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   color: var(--ink-strong);
   background:
-    radial-gradient(circle at 12% 12%, rgba(255, 236, 168, 0.14), transparent 24%),
-    radial-gradient(circle at 84% 78%, rgba(255, 193, 120, 0.16), transparent 24%),
-    linear-gradient(145deg, var(--bg-deep), var(--bg-mid) 45%, var(--bg-light));
+    radial-gradient(circle at 18% 16%, rgba(255, 230, 174, 0.24), transparent 24%),
+    radial-gradient(circle at 80% 18%, rgba(255, 193, 205, 0.22), transparent 24%),
+    radial-gradient(circle at 82% 82%, rgba(255, 231, 176, 0.22), transparent 24%),
+    linear-gradient(150deg, var(--bg-deep), var(--bg-mid) 48%, var(--bg-light));
   display: grid;
   place-items: center;
   padding: 18px;
   overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 11% 35%, rgba(255, 255, 255, 0.24) 0 2px, transparent 3px),
+    radial-gradient(circle at 26% 72%, rgba(255, 255, 255, 0.2) 0 2px, transparent 3px),
+    radial-gradient(circle at 52% 18%, rgba(255, 255, 255, 0.2) 0 2px, transparent 3px),
+    radial-gradient(circle at 76% 63%, rgba(255, 255, 255, 0.2) 0 2px, transparent 3px),
+    radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.22) 0 2px, transparent 3px);
+  opacity: 0.8;
+}
+
+body::after {
+  background:
+    radial-gradient(16px 16px at 17% 22%, rgba(255, 255, 255, 0.12) 45%, transparent 50%),
+    radial-gradient(16px 16px at 67% 14%, rgba(255, 255, 255, 0.12) 45%, transparent 50%),
+    radial-gradient(16px 16px at 84% 56%, rgba(255, 255, 255, 0.12) 45%, transparent 50%);
+  opacity: 0.65;
 }
 
 .ambient {
@@ -46,14 +74,40 @@ body {
 .ambient-left {
   left: -10vmax;
   top: -10vmax;
-  background: radial-gradient(circle, rgba(255, 208, 116, 0.78), rgba(255, 208, 116, 0));
+  background: radial-gradient(circle, rgba(255, 225, 171, 0.72), rgba(255, 225, 171, 0));
 }
 
 .ambient-right {
   right: -10vmax;
   bottom: -14vmax;
-  background: radial-gradient(circle, rgba(247, 82, 75, 0.64), rgba(247, 82, 75, 0));
+  background: radial-gradient(circle, rgba(255, 145, 177, 0.62), rgba(255, 145, 177, 0));
 }
+
+.float-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.float-hearts span {
+  position: absolute;
+  bottom: -40px;
+  color: rgba(255, 255, 255, 0.48);
+  text-shadow: 0 2px 8px rgba(132, 18, 44, 0.24);
+  animation: bg-heart-rise linear infinite;
+}
+
+.float-hearts span:nth-child(1) { left: 8%; font-size: 14px; animation-duration: 9s; animation-delay: 0s; }
+.float-hearts span:nth-child(2) { left: 18%; font-size: 18px; animation-duration: 11s; animation-delay: 1.6s; }
+.float-hearts span:nth-child(3) { left: 29%; font-size: 12px; animation-duration: 8.8s; animation-delay: 0.8s; }
+.float-hearts span:nth-child(4) { left: 41%; font-size: 20px; animation-duration: 12.5s; animation-delay: 2.2s; }
+.float-hearts span:nth-child(5) { left: 53%; font-size: 13px; animation-duration: 9.6s; animation-delay: 3.1s; }
+.float-hearts span:nth-child(6) { left: 66%; font-size: 17px; animation-duration: 10.8s; animation-delay: 1.2s; }
+.float-hearts span:nth-child(7) { left: 76%; font-size: 14px; animation-duration: 9.2s; animation-delay: 2.8s; }
+.float-hearts span:nth-child(8) { left: 86%; font-size: 19px; animation-duration: 11.3s; animation-delay: 0.5s; }
+.float-hearts span:nth-child(9) { left: 93%; font-size: 12px; animation-duration: 8.7s; animation-delay: 1.9s; }
 
 .app {
   position: relative;
@@ -310,6 +364,32 @@ body {
   color: #7a1d16;
 }
 
+.mood {
+  margin: 10px auto 12px;
+  width: min(380px, 100%);
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(243, 188, 91, 0.6);
+}
+
+.mood-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.mood-text {
+  margin: 6px 0 0;
+  font-weight: 700;
+}
+
+.mood.surprise {
+  background: linear-gradient(160deg, rgba(255, 238, 194, 0.78), rgba(255, 221, 154, 0.65));
+}
+
+.mood.mock {
+  background: linear-gradient(160deg, rgba(255, 223, 228, 0.75), rgba(255, 197, 206, 0.62));
+}
+
 #claim-btn {
   color: #6a3b09;
   background: linear-gradient(165deg, #ffe59d, #f2bb45);
@@ -380,6 +460,23 @@ body {
   0% { opacity: 0; transform: translateY(0) scale(0.8) rotate(0deg); }
   20% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-220px) scale(1.2) rotate(24deg); }
+}
+
+@keyframes bg-heart-rise {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.42;
+  }
+  60% {
+    transform: translateY(-55vh) translateX(8px) rotate(8deg);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(-10px) rotate(-10deg);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 760px) {

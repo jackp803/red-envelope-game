@@ -6,6 +6,9 @@ const maxPriceEl = document.getElementById("max-price");
 const applySetupBtn = document.getElementById("apply-setup");
 const resultPanel = document.getElementById("result-panel");
 const resultAmount = document.getElementById("result-amount");
+const moodBox = document.getElementById("mood-box");
+const moodEmoji = document.getElementById("mood-emoji");
+const moodText = document.getElementById("mood-text");
 const claimBtn = document.getElementById("claim-btn");
 const claimBox = document.getElementById("claim-box");
 const claimText = document.getElementById("claim-text");
@@ -235,6 +238,22 @@ function finalize() {
 
   totalEl.textContent = String(total);
   resultAmount.textContent = `最終金額：${total} 元`;
+  moodBox.classList.remove("surprise", "mock");
+  if (state.maxPrice != null) {
+    const half = state.maxPrice / 2;
+    if (total > half) {
+      moodBox.classList.add("surprise");
+      moodEmoji.textContent = "🎉";
+      moodText.textContent = "哭阿!我的錢包";
+    } else {
+      moodBox.classList.add("mock");
+      moodEmoji.textContent = "😜";
+      moodText.textContent = "爽啦，下次加油~";
+    }
+    moodBox.classList.remove("hidden");
+  } else {
+    moodBox.classList.add("hidden");
+  }
   resultPanel.classList.remove("hidden");
   resultPanel.classList.add("show");
   launchHeartBurst();
@@ -313,6 +332,7 @@ function buildCard(position) {
 function resetView() {
   resultPanel.classList.add("hidden");
   resultPanel.classList.remove("show");
+  moodBox.classList.add("hidden");
   claimBox.classList.add("hidden");
   totalEl.textContent = "____";
 }

@@ -9,6 +9,17 @@
 <body>
   <div class="ambient ambient-left" aria-hidden="true"></div>
   <div class="ambient ambient-right" aria-hidden="true"></div>
+  <div class="float-hearts" aria-hidden="true">
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+  </div>
   <main class="app">
     <header class="hero">
       <p class="hero-badge">Lucky Moment</p>
@@ -47,6 +58,10 @@
     <section class="result-panel hidden" id="result-panel">
       <h2>恭喜中獎</h2>
       <p id="result-amount"></p>
+      <div class="mood hidden" id="mood-box">
+        <div class="mood-emoji" id="mood-emoji"></div>
+        <p class="mood-text" id="mood-text"></p>
+      </div>
       <button id="claim-btn">領取紅包</button>
 
       <div class="claim-box hidden" id="claim-box">
