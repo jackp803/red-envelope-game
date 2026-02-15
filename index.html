@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>四位數動態隨機紅包</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <h1>動態隨機紅包</h1>
+      <p>可選位數、可設上限、手動停止與翻牌鎖定</p>
+    </header>
+
+    <section class="setup" aria-label="遊戲設定">
+      <label>
+        位數
+        <select id="digit-count">
+          <option value="1">1 位</option>
+          <option value="2">2 位</option>
+          <option value="3">3 位</option>
+          <option value="4" selected>4 位</option>
+          <option value="5">5 位</option>
+          <option value="6">6 位</option>
+        </select>
+      </label>
+
+      <label>
+        最高價格（可空白）
+        <input id="max-price" type="number" min="1" step="1" placeholder="留空 = 不限制" />
+      </label>
+
+      <button id="apply-setup">套用設定</button>
+    </section>
+
+    <section class="digits" id="digits" aria-label="紅包數字區"></section>
+
+    <section class="status" aria-live="polite">
+      <p class="running-note" id="running-note">請先套用設定，然後點擊任一位的「開始抽數字」</p>
+      <p class="total">目前總金額：<strong id="total">____</strong> 元</p>
+    </section>
+
+    <section class="result-panel hidden" id="result-panel">
+      <h2>恭喜中獎</h2>
+      <p id="result-amount"></p>
+      <button id="claim-btn">領取紅包</button>
+
+      <div class="claim-box hidden" id="claim-box">
+        <p id="claim-text"></p>
+        <a id="line-link" target="_blank" rel="noopener noreferrer">傳送到 LINE</a>
+        <img id="qr" alt="LINE 傳送 QR Code" />
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
